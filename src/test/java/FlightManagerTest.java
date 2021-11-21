@@ -8,11 +8,21 @@ public class FlightManagerTest {
     FlightManager flightManager;
     Flight flight;
     Plane plane;
+    Passenger passenger1;
+    Passenger passenger2;
+    Passenger passenger3;
+    Passenger passenger4;
+    Passenger passenger5;
 
     @Before
     public void setUp() {
         plane = new Plane("Boeing 747", 366, 70000);
         flight = new Flight("BA345", "LAX", "1130", plane);
+        passenger1 = new Passenger("Anna", 1);
+        passenger2 = new Passenger("Bert", 1);
+        passenger3 = new Passenger("Cathy", 1);
+        passenger4 = new Passenger("David", 1);
+        passenger5 = new Passenger("Edna", 1);
         flightManager = new FlightManager(flight);
     }
 
@@ -22,10 +32,34 @@ public class FlightManagerTest {
     }
 
     @Test
-    public void checkPassangerBaggageLimit(){
-        assertEquals(95.6, flightManager.baggageAllowancePerPassenger(), 0.1);
+    public void checkTotalBaggageWeightAllowance(){
+        assertEquals(35000, flightManager.totalBaggageWeightAllowance(), 0.1);
     }
 
+    @Test
+    public void checkPassengerBaggageWeightLimit(){
+        assertEquals(95.628, flightManager.baggageAllowancePerPassenger(), 0.1);
+    }
+
+    @Test
+    public void checkBookedBaggageWeight(){
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        flight.addPassenger(passenger3);
+        flight.addPassenger(passenger4);
+        flight.addPassenger(passenger5);
+        assertEquals(478.14, flightManager.bookedBaggageWeight(), 0.1);
+    }
+
+    @Test
+    public void checkRemainingAvailableBaggageWeight(){
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        flight.addPassenger(passenger3);
+        flight.addPassenger(passenger4);
+        flight.addPassenger(passenger5);
+        assertEquals(34521.86, flightManager.remainingAvailableBaggageWeight(), 0.1);
+    }
 }
 
 

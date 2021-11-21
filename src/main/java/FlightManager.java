@@ -13,11 +13,21 @@ public class FlightManager {
         return flight.getPlane().getWeight();
     }
 
-    public double baggageAllowancePerPassenger(){
-        double totalBaggageWeight = getFlightPlaneWeight() / 2;
-        return totalBaggageWeight / flight.getPlane().getCapacity();
+    public double totalBaggageWeightAllowance(){
+        return getFlightPlaneWeight() / 2;
     }
 
+    public double baggageAllowancePerPassenger(){
+        return totalBaggageWeightAllowance() / flight.getPlane().getCapacity();
+    }
+
+    public double bookedBaggageWeight() {
+        return flight.numberOfPassengersBooked() * baggageAllowancePerPassenger();
+    }
+
+    public double remainingAvailableBaggageWeight() {
+        return totalBaggageWeightAllowance() - bookedBaggageWeight();
+    }
 
 }
 
