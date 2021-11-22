@@ -12,7 +12,7 @@ public class Pilot extends Staff{
     }
 
     public Boolean readyToFly() {
-        if (getLicenceNumber() != null) {
+        if (licenceNumber != null) {
             return true;
         } else return false;
     }

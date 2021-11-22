@@ -58,7 +58,7 @@ public class Flight {
 
     public void addPilot(Pilot pilot) {
         if (pilot.readyToFly() == true){
-        this.pilots.add(pilot);}
+        pilots.add(pilot);}
     }
 
     public boolean checkPlaneHasPilot() {
@@ -70,11 +70,11 @@ public class Flight {
     }
 
     public void addPassenger(Passenger passenger) {
-        this.passengers.add(passenger);
+        passengers.add(passenger);
     }
 
     public void addCabinCrew(CabinCrewMember cabinCrewMember) {
-        this.cabinCrewMembers.add(cabinCrewMember);
+        cabinCrewMembers.add(cabinCrewMember);
     }
 
     public String crewGiveMessage(CabinCrewMember cabinCrewMember) {
